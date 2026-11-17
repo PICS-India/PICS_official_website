@@ -1,0 +1,12 @@
+Django>=5.2,<6.0
+djangorestframework>=3.16,<4.0
+django-cors-headers>=4.7
+mysqlclient>=2.2
+python-dotenv>=1.1
+Pillow>=11.0
+django-filter>=25.1
+djangorestframework-simplejwt>=5.5
+PyJWT>=2.10
+requests>=2.32
+pytest>=8.0
+pytest-django>=4.11
