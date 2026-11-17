@@ -1,12 +1,16 @@
+from importlib import import_module
 from django.apps import AppConfig
 
 
 class AccountsConfig(AppConfig):
-
     default_auto_field = "django.db.models.BigAutoField"
-
     name = "apps.accounts"
 
-    label = "pics_accounts"
+    def import_models(self):
+        self.models = self.apps.all_models[self.label]
+        self.models_module = import_module(
+            f"{self.name}.account_models"
+        )
 
-    verbose_name = "PICS Accounts Management"
+    def ready(self):
+        import_module(f"{self.name}.account_admin")
