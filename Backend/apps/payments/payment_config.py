@@ -1,12 +1,16 @@
+from importlib import import_module
 from django.apps import AppConfig
 
 
 class PaymentsConfig(AppConfig):
-
     default_auto_field = "django.db.models.BigAutoField"
-
     name = "apps.payments"
 
-    label = "pics_payments"
+    def import_models(self):
+        self.models = self.apps.all_models[self.label]
+        self.models_module = import_module(
+            f"{self.name}.payment_models"
+        )
 
-    verbose_name = "PICS Payments Management"
+    def ready(self):
+        import_module(f"{self.name}.payment_admin")
